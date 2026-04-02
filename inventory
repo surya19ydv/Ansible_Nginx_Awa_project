@@ -1,0 +1,9 @@
+[webserver]
+server1 ansible_host=IP1
+server2 ansible_host=IP2
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/key.pem
+

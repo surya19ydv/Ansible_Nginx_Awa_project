@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ansible AWS Automation Project</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #38bdf8;
+    }
+
+    section {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      color: #38bdf8;
+    }
+
+    pre {
+      background: #020617;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #22c55e;
+    }
+
+    .architecture {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .box {
+      background: #020617;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      text-align: center;
+      border: 1px solid #38bdf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      border-top: 2px solid #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ansible + AWS Automation Project</h1>
+  <p>Nginx Deployment on Multiple Servers using Ansible</p>
+</header>
+
+<section>
+  <div class="card">
+    <h2>Project Overview</h2>
+    <p>This project demonstrates how to automate web server deployment using Ansible on AWS EC2 instances.</p>
+    <ul>
+      <li>1 Control Node (Ansible Installed)</li>
+      <li>2 Managed Nodes (Web Servers)</li>
+      <li>Nginx Installation</li>
+      <li>Website Deployment</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Architecture</h2>
+    <div class="architecture">
+      <div class="box">Control Node<br>(Ansible)</div>
+      <div class="box">Server 1<br>(Nginx)</div>
+      <div class="box">Server 2<br>(Nginx)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Inventory File</h2>
+    <pre>
+[web]
+server1 ansible_host=IP1
+server2 ansible_host=IP2
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>Ansible Playbook</h2>
+    <pre>
+---
+- name: Nginx Install and Deployment
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Start and Enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy Website
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        force: yes
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>Website Code</h2>
+    <pre>
+&lt;h1&gt;Welcome to My Automated Server&lt;/h1&gt;
+&lt;p&gt;Deployed using Ansible&lt;/p&gt;
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>Execution Command</h2>
+    <pre>
+ansible-playbook -i inventory playbook.yml
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>Key Features</h2>
+    <ul>
+      <li>Automation of infrastructure</li>
+      <li>Zero manual configuration</li>
+      <li>Scalable deployment</li>
+      <li>Reusable playbooks</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Created for DevOps Portfolio | Ansible + AWS Project</p>
+</footer>
+
+</body>
+</html>
