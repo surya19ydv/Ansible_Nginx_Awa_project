@@ -131,7 +131,3 @@ ansible-playbook -i inventory playbook.yml
 
 ---
 
-## 👨‍💻 Author
-
-Suryakala Yadav
-DevOps Enthusiast | AWS | Ansible
